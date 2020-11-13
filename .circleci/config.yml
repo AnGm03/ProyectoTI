@@ -11,12 +11,5 @@
            command: |
              ssh servidordesarrollo@70.37.102.226
 
- workflows:
-   version: 2
-   build-and-deploy:
-     jobs:
-       - deploy
-       - deploy:
-           requires:
-             - deploy # only deploy once build job has completed
+ 
           
