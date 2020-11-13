@@ -19,6 +19,4 @@
        - deploy:
            requires:
              - deploy # only deploy once build job has completed
-           filters:
-             branches:
-               only: master # only deploy on the master branch
+          
