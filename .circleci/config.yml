@@ -1,8 +1,7 @@
  version: 2
 
  jobs:
-   build:
-     #...
+   
    deploy:
      machine:
        enabled: true
@@ -16,10 +15,10 @@
    version: 2
    build-and-deploy:
      jobs:
-       - build
+       - deploy
        - deploy:
            requires:
-             - build # only deploy once build job has completed
+             - deploy # only deploy once build job has completed
            filters:
              branches:
                only: master # only deploy on the master branch
