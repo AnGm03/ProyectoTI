@@ -12,11 +12,11 @@ jobs:
             - "a8:cc:0f:95:0a:96:72:e0:88:a1:ee:17:59:95:7a:3b"
       - run:
           name: Deploy Over SSH 
-          command: |
+          command: 
              ssh $SSHUSERPRO1@SSHHOSTPRO 
       - run:
           name: Deploy Over SSH 2
-          command: |
+          command: 
              ssh $SSHUSERPRO2@SSHHOSTPRO2
 
   deployDevelop:
@@ -28,7 +28,7 @@ jobs:
             - "a0:94:9d:80:1f:8f:20:f0:f6:dc:14:65:40:09:89:70"
       - run:
           name: Deploy Over SSH
-          command: |
+          command: 
              ssh $SSHUSERDE@SSHHOST
 
 workflows:
