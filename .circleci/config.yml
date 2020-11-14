@@ -8,16 +8,16 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "83:0f:18:9c:2d:44:b3:6b:5b:22:4c:6d:96:93:76:7a"
+            - "23:34:59:d9:68:e6:bb:94:7f:66:43:11:03:f3:b1:7d"
             - "a8:cc:0f:95:0a:96:72:e0:88:a1:ee:17:59:95:7a:3b"
       - run:
           name: Deploy Over SSH 
           command: |
-             ssh servidores@13.66.4.189 "cd CircleCI-NodeApp && git pull && npm run deploy"
+             ssh $SSHUSERPRO1@SSHHOSTPRO 
       - run:
           name: Deploy Over SSH 2
           command: |
-             ssh nfs@52.171.197.75 "cd CircleCI-NodeApp && git pull && npm run deploy"
+             ssh $SSHUSERPRO2@SSHHOSTPRO2
 
   deployDevelop:
     machine:
@@ -29,25 +29,32 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-             ssh servidord@40.124.33.128 "cd CircleCI-NodeApp && git pull && npm run deploy"
+             ssh $SSHUSERDE@SSHHOST
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       #- build
-      - deployProduction:
-          #requires:
-          #  - build # only deploy once build job has completed
-          filters:
-            branches:
-              only: master # only deploy on the master branch
       - deployDevelop:
           #requires:
-          #  - build # only deploy once build job has completed
+          
           filters:
             branches:
-              only: develop # only deploy on the develop branch
+              only: main 
+      - Aprobar:
+         type: aproval
+         requires: 
+          -deployDevelop
+          
+      - deployProduction:
+          requires: 
+            -Aprobar
+          
+          filters:
+            branches:
+              only: main 
+      
 
 
  
