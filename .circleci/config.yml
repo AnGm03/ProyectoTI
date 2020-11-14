@@ -13,11 +13,11 @@ jobs:
       - run:
           name: Deploy Over SSH 
           command: 
-             ssh $SSHUSERPRO1@SSHHOSTPRO 
+             ssh $SSHUSERPRO1@SSHHOSTPRO " cd app && sudo git pull"
       - run:
           name: Deploy Over SSH 2
           command: 
-             ssh $SSHUSERPRO2@SSHHOSTPRO2
+             ssh $SSHUSERPRO2@SSHHOSTPRO2 " cd app && sudo git pull"
 
   deployDevelop:
     machine:
